@@ -13,7 +13,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 @property (strong, nonatomic) IBOutlet UILabel *gameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *detailLabel;
 
 @property (nonatomic, strong) Player *createdPlayer;
 
