@@ -12,10 +12,13 @@
 
 @end
 
-@implementation SelectGameTableViewController
+@implementation SelectGameTableViewController {
 
+// instance variables are defined inside {...}.  without these they are global!
     NSArray *_games;
     NSUInteger _selectedIndex;
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,27 +52,34 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"gameCell" forIndexPath:indexPath];
     
     cell.textLabel.text = _games[indexPath.row];
     
     if (indexPath.row == _selectedIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
+    }
+    else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)deselectCurrentRow:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    
     if (_selectedIndex != NSNotFound) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:
                                  [NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self deselectCurrentRow:tableView atIndexPath:indexPath];
     
     _selectedIndex = indexPath.row;
     
@@ -78,7 +88,7 @@
     
     self.selectedGame = _games[indexPath.row];
 
-    [self performSegueWithIdentifier:@"unwindToPlayerDetails" sender:self];
+    [self performSegueWithIdentifier:self.returnSegueIdentifier sender:self];
 }
 
 

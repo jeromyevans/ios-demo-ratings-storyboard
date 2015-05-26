@@ -11,5 +11,6 @@
 @interface SelectGameTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSString *selectedGame;
+@property (nonatomic, strong) NSString *returnSegueIdentifier; // is this okay?
 
 @end

@@ -14,9 +14,12 @@
 
 @end
 
-@implementation PlayerDetailsTableViewController
+@implementation PlayerDetailsTableViewController {
 
-NSString *_game;
+    // instance variables are defined inside {...}.  without these they are global!
+    NSString *_game;
+
+}
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -50,7 +53,7 @@ NSString *_game;
 }
 
 
-- (IBAction)unwindToPlayerDetails:(UIStoryboardSegue *)unwindSegue
+- (IBAction)unwindToAddPlayer:(UIStoryboardSegue *)unwindSegue
 {
     UIViewController* sourceViewController = unwindSegue.sourceViewController;
     
@@ -75,6 +78,7 @@ NSString *_game;
         SelectGameTableViewController *selectGameViewController = segue.destinationViewController;
         
         selectGameViewController.selectedGame =  _game;
+        selectGameViewController.returnSegueIdentifier = @"unwindToAddPlayer";
     }
 }
 
@@ -125,14 +129,6 @@ NSString *_game;
 }
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -14,9 +14,12 @@
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
 
+    // instance variables are defined inside {...}.  without these they are global!
     NSMutableArray *_players;
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
